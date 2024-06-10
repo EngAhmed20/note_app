@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 
+import 'note_app/presentation/views/notes_view.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const NotesApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class NotesApp extends StatelessWidget {
+  const NotesApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        brightness: Brightness.dark,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: NotesView(),
     );
   }
 }
+
 
 
