@@ -9,11 +9,13 @@ class NotesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(onPressed: (){
-        showModalBottomSheet(context: context, builder: (context){
+        showModalBottomSheet(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            context: context, builder: (context){
           return addVNoteBottomSheet();
         });
       },
-      child: Icon(Icons.add),
+      child:const  Icon(Icons.add,color: Colors.black,),
       ),
      body: SafeArea(child: noteViewBody()),
 
