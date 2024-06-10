@@ -17,7 +17,7 @@ class customButton extends StatelessWidget {
           color: KprimaryColor,
         ),
         child: Center(
-          child: Text('Save',style: TextStyle(fontSize: 18,color: Colors.black,fontWeight: FontWeight.bold),),
+          child: Text('add',style: TextStyle(fontSize: 18,color: Colors.black,fontWeight: FontWeight.bold),),
         ),
       ),
     );
