@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:note_app/constants.dart';
 
 class customTextFiled extends StatelessWidget {
-  const customTextFiled({super.key,  this.maxLine=1, required this.title,this.onSaved});
+  const customTextFiled({super.key,  this.maxLine=1, required this.title,this.onSaved,this.controller});
   final int maxLine;
   final String title;
+  final TextEditingController? controller;
   final void Function(String?)? onSaved;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       maxLines: maxLine,
       onSaved: onSaved,
       validator: (value)
         {
-          if(value!.isEmpty??true)
+          if(value!.isEmpty)
           {
             return 'Filed is required';
           }
