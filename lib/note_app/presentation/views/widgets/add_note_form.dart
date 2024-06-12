@@ -20,6 +20,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
   TextEditingController subTextContrlloler=TextEditingController();
   @override
   Widget build(BuildContext context) {
+
     return Form(
       key: form_key,
       child: Column(
@@ -35,22 +36,28 @@ class _AddNoteFormState extends State<AddNoteForm> {
 
           ),
           SizedBox(height: 30,),
-          customButton(onTap: (){
-            if(form_key.currentState!.validate())
-            {
-              var note=NoteModel(title: textController.text!, subTitle: subTextContrlloler.text!, date:DateTime.now().toString(), color:Colors.orange.value);
-              textController.clear();
-              subTextContrlloler.clear();
-              form_key.currentState!.save();
-              BlocProvider.of<AddNoteCubit>(context).addNote(note);
-            }else{
-              setState(() {
-                autovalidateMode=AutovalidateMode.always;
+          BlocBuilder<AddNoteCubit,AddNoteState>(
+            builder: (context,state) {
+              return customButton(
+                isLoading:state is AddNoteLoading?true: false,
+                onTap: (){
+                if(form_key.currentState!.validate())
+                {
+                  var note=NoteModel(title: textController.text!, subTitle: subTextContrlloler.text!, date:DateTime.now().toString(), color:Colors.orange.value);
+                  textController.clear();
+                  subTextContrlloler.clear();
+                  form_key.currentState!.save();
+                  BlocProvider.of<AddNoteCubit>(context).addNote(note);
+                }else{
+                  setState(() {
+                    autovalidateMode=AutovalidateMode.always;
 
-              });
+                  });
 
+                }
+              },);
             }
-          },),
+          ),
           SizedBox(height: 30,),
 
         ],

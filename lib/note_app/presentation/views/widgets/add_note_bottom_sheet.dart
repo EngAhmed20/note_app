@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/note_app/presentation/manager/add_note_cubit/add_note_cubit.dart';
 import 'add_note_form.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 class addVNoteBottomSheet extends StatelessWidget {
   const addVNoteBottomSheet({super.key});
 
@@ -29,10 +28,9 @@ class addVNoteBottomSheet extends StatelessWidget {
             }
           },
           builder: (context,state){
-            return ModalProgressHUD(
-              inAsyncCall: state is AddNoteLoading?true:false,
-              child:const SingleChildScrollView(child: AddNoteForm()),
-            );
+            return AbsorbPointer(
+                absorbing: state is AddNoteLoading?true:false,
+                child: const SingleChildScrollView(child: AddNoteForm()));
           }
         ),
       ),
