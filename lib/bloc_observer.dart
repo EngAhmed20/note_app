@@ -9,10 +9,14 @@ class NoteBlocObserver implements BlocObserver{
 
   @override
   void onClose(BlocBase<dynamic> bloc) {
+    debugPrint('onClose=$bloc');
+
   }
 
   @override
   void onCreate(BlocBase<dynamic> bloc) {
+    debugPrint('onCreate=$bloc');
+
   }
 
   @override
