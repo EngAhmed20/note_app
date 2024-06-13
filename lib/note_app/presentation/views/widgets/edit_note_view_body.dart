@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/note_app/presentation/manager/get_notes_cubit/notes_cubit.dart';
 import 'package:note_app/note_app/presentation/views/widgets/custom_app_bar.dart';
-
+import '../../../../constants.dart';
 import '../../../models/note_model.dart';
+import 'color_list_view.dart';
 import 'custom_text_filed.dart';
 
 class EditNoteViewBody extends StatefulWidget {
@@ -33,9 +34,52 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
           customTextFiled(title: widget.item.title,onChanged: (value){title=value;},),
           const SizedBox(height: 30,),
           customTextFiled(title: widget.item.subTitle,maxLine: 5,onChanged: (value){content=value;},),
+          SizedBox(height: 20,),
+         ColorsListView(note: widget.item,),
 
         ],
 
+      ),
+    );
+  }
+}
+class ColorsListView extends StatefulWidget {
+  const ColorsListView({super.key,required this.note});
+ final NoteModel note;
+
+
+  @override
+  State<ColorsListView> createState() => _ColorsListViewState();
+}
+
+class _ColorsListViewState extends State<ColorsListView> {
+
+  late int currentIndex;
+  @override
+  void initState() {
+    super.initState();
+    currentIndex=KItemColor.indexOf(Color(widget.note.color));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 30*2,
+      child: ListView.separated(itemBuilder:(context,index)=>GestureDetector(
+        onTap: (){
+          currentIndex=index;
+          widget.note.color=KItemColor[index].value;
+          setState(() {
+
+          });
+        },
+        child: ColorItem(
+          isActive: currentIndex==index ?true : false,color: KItemColor[index],
+        ),
+      ),
+        separatorBuilder:(context,index)=>const SizedBox(width:4,),
+        itemCount: KItemColor.length,
+        scrollDirection: Axis.horizontal,
       ),
     );
   }

@@ -1,5 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:note_app/note_app/presentation/manager/add_note_cubit/add_note_cubit.dart';
+
+import '../../../../constants.dart';
 
 class ColorItem extends StatelessWidget {
   const ColorItem({super.key, required this.isActive, this.color});
@@ -29,23 +33,7 @@ class ColorsListView extends StatefulWidget {
 }
 
 class _ColorsListViewState extends State<ColorsListView> {
-   List <Color>itemColor=const [
-   Color(0xffD4DCFF),
-   Color(0xff7D83FF) ,
-   Color(0xff007FFF),
-    Color(0xff1AFFD5),
-    Color(0xffCBBF7A) ,
-    Color(0xffC9BA66),
-    Color(0xffF9FBF2),
-    Color(0xffffede1),
-    Color(0xffd7f9ff),
-    Color(0xffafcbff),
-    Color(0xffEDD6FF),
 
-
-
-
-  ];
   int currentIndex=0;
 
   @override
@@ -55,16 +43,17 @@ class _ColorsListViewState extends State<ColorsListView> {
       child: ListView.separated(itemBuilder:(context,index)=>GestureDetector(
         onTap: (){
           currentIndex=index;
+          BlocProvider.of<AddNoteCubit>(context).color=KItemColor[index];
           setState(() {
 
           });
         },
         child: ColorItem(
-          isActive: currentIndex==index ?true : false,color: itemColor[index],
+          isActive: currentIndex==index ?true : false,color: KItemColor[index],
         ),
       ),
         separatorBuilder:(context,index)=>const SizedBox(width:4,),
-        itemCount: itemColor.length,
+        itemCount: KItemColor.length,
         scrollDirection: Axis.horizontal,
       ),
     );

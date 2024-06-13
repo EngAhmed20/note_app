@@ -49,7 +49,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 {
                   var currentDate=DateTime.now();
                   var formateDate=DateFormat('dd/mm/yyyy hh.mm').format(currentDate);
-                  var note=NoteModel(title: textController.text, subTitle: subTextContrlloler.text, date:formateDate, color:Colors.orange.value);
+                  var note=NoteModel(title: textController.text, subTitle: subTextContrlloler.text, date:formateDate, color:BlocProvider.of<AddNoteCubit>(context).color.value);
                   textController.clear();
                   subTextContrlloler.clear();
                   form_key.currentState!.save();
