@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:note_app/constants.dart';
 
 class customTextFiled extends StatelessWidget {
-  const customTextFiled({super.key,  this.maxLine=1, required this.title,this.onSaved,this.controller});
+  const customTextFiled({super.key,  this.maxLine=1, required this.title,this.onSaved,this.controller, this.onChanged});
   final int maxLine;
   final String title;
   final TextEditingController? controller;
   final void Function(String?)? onSaved;
+  final void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +15,7 @@ class customTextFiled extends StatelessWidget {
       controller: controller,
       maxLines: maxLine,
       onSaved: onSaved,
+      onChanged: onChanged,
       validator: (value)
         {
           if(value!.isEmpty)

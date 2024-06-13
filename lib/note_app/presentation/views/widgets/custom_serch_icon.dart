@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 class customSerachIcon extends StatelessWidget {
-  const customSerachIcon({super.key, required this.icon});
+  const customSerachIcon({super.key, required this.icon, this.onTap});
   final IconData icon;
+  final void Function()?onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class customSerachIcon extends StatelessWidget {
       child: Center(
         child: IconButton(
           icon: Icon(icon,size: 30,),
-          onPressed: () {},
+          onPressed: onTap,
         ),
       ),
     );

@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:note_app/note_app/models/note_model.dart';
 import 'package:note_app/note_app/presentation/manager/add_note_cubit/add_note_cubit.dart';
 
+import 'color_list_view.dart';
 import 'custom_button.dart';
 import 'custom_text_filed.dart';
 
@@ -36,6 +37,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
             controller: subTextContrlloler,
 
           ),
+          SizedBox(height: 10,),
+          ColorsListView(),
           SizedBox(height: 30,),
           BlocBuilder<AddNoteCubit,AddNoteState>(
             builder: (context,state) {
@@ -46,7 +49,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 {
                   var currentDate=DateTime.now();
                   var formateDate=DateFormat('dd/mm/yyyy hh.mm').format(currentDate);
-                  var note=NoteModel(title: textController.text!, subTitle: subTextContrlloler.text!, date:formateDate, color:Colors.orange.value);
+                  var note=NoteModel(title: textController.text, subTitle: subTextContrlloler.text, date:formateDate, color:Colors.orange.value);
                   textController.clear();
                   subTextContrlloler.clear();
                   form_key.currentState!.save();
@@ -69,3 +72,4 @@ class _AddNoteFormState extends State<AddNoteForm> {
     );
   }
 }
+
